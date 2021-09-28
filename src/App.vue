@@ -1,6 +1,7 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <!-- <Game msg="Welcome to Your Vue.js App"/> -->
+  <div>
+    <Game msg="Welcome to Your Vue.js App"/>
+  </div>
 </template>
 
 <script>
@@ -20,7 +21,25 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background: linear-gradient(160deg, #3de9db 0%, #1330d3d0 100%);
 }
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 </style>

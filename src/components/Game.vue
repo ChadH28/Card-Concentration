@@ -4,11 +4,11 @@
             <h1>Card Concentration</h1>
             <div class="float-right">
                 <button type="button" class="btn reset">
-              <i class="fa fa-repeat"></i>
-              </button>
+                              <i class="fa fa-repeat"></i>
+                              </button>
                 <button type="button" class="btn btn-danger">
-                <i class="fa fa-sign-out"></i>
-                </button>
+                                <i class="fa fa-sign-out"></i>
+                                </button>
             </div>
         </header>
     
@@ -20,17 +20,14 @@
     
         <div div class="container">
             <div class="deck row row-cols-6 row-cols-md-6 row-cols-lg-6">
-                <div class="col" v-for="(card,index) in cards" :key="index" :value="card.value" >
-                    <div class="card-content" @click="toggleCard(card)" :class="{ 'flipped': card.flipped, '': !card.flipped }">
+                <div class="col" v-for="(card,index) in cards" :key="index" :value="card.value">
+                    <div class="card-content" @click="flipCard(card) && matchCard(card) " :class="{ 'flipped': card.flipped, 'matched': card.matched}">
                         <div class="card-front" v-if="visible">
-                          <!-- background of card image coming soon -->
-                          fr
+                            <!-- background of card image coming soon -->
+                            fr
                         </div>
                         <div v-else class="card-back">
                             <img class="img-fluid card-image" :src="card.image" />
-                            <!-- <p>{{ card.value}}</p>
-                            <p>{{ card.suit }}</p>
-                            <p>{{ card.color }}</p> -->
                         </div>
                     </div>
                 </div>
@@ -40,48 +37,67 @@
 </template>
 
 <script>
-
 export default {
     name: "Concentration",
     data() {
         return {
             player1: {
-              moves: null,
-              turn: false,
-              score: 0
+                moves: null,
+                turn: false,
+                score: 0
             },
             player2: {
-              moves: null,
-              turn: false,
-              score: 0
+                moves: null,
+                turn: false,
+                score: 0
             },
             card: null,
             moves: null,
             score: 0,
+            // Array of stored flipped cards the user selects / later will be used to store the flips player 1 and player 2 chooses
+            flippedCards: [],
+            // Array of a deck of cards
             cards: [""],
-            visible: false
+            visible: false,
+            flipped: false
         };
     },
     created() {
         this.getDeck();
-        // this.getCard();
     },
-    // setup(props, context) {
-    //   const selectCard = () => {
-    //     context.emit('select-card', {
-    //       value: ,
-    //       suit
-    //     })
-    //   }
-    // },
     methods: {
-        toggleAlert() {
-            console.log("selected", this.cards)
+        flipCard(card) {
+            // card.flipped = !card.flipped;
+            card.flipped = true;
+            console.log(card.value, ' OF ', card.suit)
+
+            if (this.flippedCards.length < 2) {
+                this.flippedCards.push(card);
+                // console.log(this.flippedCards)
+            }
+            if (this.flippedCards.length === 2) {
+                console.log('youve selected 2 cards:', this.flippedCards[0].value, this.flippedCards[0].suit, this.flippedCards[1].value, this.flippedCards[1].suit);
+                    if (this.flippedCards[0].value === this.flippedCards[1].value) {
+                        console.log("matched")
+                        // this.flippedCards.forEach(card => card.matched = true);
+                    } else {
+                        // this.flippedCards.forEach(card => card.flipped = false);
+                        console.log("not matched, flipped")
+                    }
+                    this.flippedCards = [];
+            }
+
         },
-        toggleCard(card) {
-        card.flipped = !card.flipped;
-        console.log(card)
-        },
+        // matchCard(card) {
+        //     card.matched = false;
+        //     if (this.flippedCards[0].value === this.flippedCards[1].value) {
+        //         this.flippedCards.forEach(card => card.matched = true);
+        //     }
+        //     else {
+        //         this.flippedCards.forEach(card => card.flipped = false);
+        //     }
+        //     this.flippedCards = [];
+        // },
         // getting deck of cards images from the deckofcardsapi
         getDeck() {
             const url =
@@ -112,11 +128,6 @@ export default {
                         });
                 });
         },
-        // getCard() {
-        // this.cards.forEach((card) => {
-        //     console.log(card.suit)
-        // });
-        // },
     },
 };
 </script>
@@ -174,7 +185,6 @@ h1 {
     float: left;
 }
 
-
 /*
  * Styles for the deck of cards
  */
@@ -193,7 +203,6 @@ h1 {
 }
 
 .card-image {
-
     background: linear-gradient(160deg, #3c384d 0%, #ffffff 450%);
     border-radius: 6px;
     border: white 3px solid;
@@ -223,4 +232,7 @@ h1 {
     transform: rotateY(180deg);
 }
 
+.matched {
+    opacity: 0.5;
+}
 </style>

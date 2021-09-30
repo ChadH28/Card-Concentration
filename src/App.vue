@@ -1,21 +1,32 @@
 <template>
   <div>
-    <Game msg="Welcome to Your Vue.js App"/>
+    <header>
+      <h1>Card Concentration</h1>
+    </header>
+    <Game/>
   </div>
 </template>
 
 <script>
-import Game from './components/Game.vue'
+import Game from "./components/Game.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Game
-  }
-}
+    Game,
+  },
+};
 </script>
 
 <style>
+
+h1 {
+  padding-top: 30px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  color: white;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -41,5 +52,4 @@ body {
   margin: 0;
   padding: 0;
 }
-
 </style>

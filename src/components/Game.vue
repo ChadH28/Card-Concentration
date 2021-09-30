@@ -173,15 +173,16 @@ export default {
 .deck {
   align-items: center;
   width: 100%;
-  min-height: 680px;
-  padding: 32px;
+  height: auto;
+  padding: 20px;
   border-radius: 8px;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   background-color: rgba(255, 255, 255, 0.34);
-  margin: 20px auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .card-image {

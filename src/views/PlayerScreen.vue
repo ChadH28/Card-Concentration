@@ -11,7 +11,7 @@
               <img class="img-fluid" src="../assets/spacer1.png"/>
             </div>
             <div class="card-footer bg-transparent">
-              <input type="text" class="form-control" placeholder="player1" aria-label="player1">
+              <input type="text" class="form-control" placeholder="Name of player 1" aria-label="player1">
             </div>
           </div>
         </div>
@@ -21,12 +21,12 @@
               <img class="img-fluid" src="../assets/spacer2.png"/>
             </div>
             <div class="card-footer bg-transparent">
-              <input type="text" class="form-control" placeholder="player1" aria-label="player1">
+              <input type="text" class="form-control" placeholder="Name of player 2" aria-label="player1">
             </div>
           </div>
         </div>
       </div>
-      <button>Let's Play</button>
+      <button type="button" class="btn btn-success">Let's Play</button>
     </div>
 
   </div>

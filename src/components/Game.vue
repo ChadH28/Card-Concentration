@@ -1,32 +1,23 @@
 <template>
     <div class="game-section">
-            <div class="float-right">
+        <div class="float-right">
+            <button
+                @click="reset"
+                type="button"
+                class="btn reset"
+            >
+                <i class="fa fa-repeat"></i>
+                </button>
                 <button
-                    @click="reset"
                     type="button"
-                    class="btn reset"
+                    class="btn btn-danger"
                 >
-                    <i class="fa fa-repeat"></i>
+                    <i class="fa fa-sign-out"></i>
                     </button>
-                    <button
-                        type="button"
-                        class="btn btn-danger"
-                    >
-                        <i class="fa fa-sign-out"></i>
-                        </button>
-            </div>
+        </div>
 
-        <section class="score-panel">
-
-            <span class="moves">0 Moves</span>
-
-        </section>
-
-        <div
-            div
-            class="container"
-        >
-            <div class="deck row row-cols-6 row-cols-md-6 row-cols-lg-6">
+        <div class="container">
+            <div class="deck row row-cols-sm-6 row-cols-md-6 row-cols-lg-6">
                 <div
                     class="col"
                     v-for="(card,index) in cards"
@@ -48,7 +39,7 @@
                             />
                         </div>
             </div>
-    </div>
+        </div>
     </div>
     </div>
     </div>
@@ -164,49 +155,15 @@ export default {
 <!-- Added "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .game-section {
-  display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   padding-top: 10px;
 }
-
-
 
 .reset {
   background-color: orange;
   color: white;
-  margin-right: 5px;
-}
-
-/*
- * Styles for the Score Panel
- */
-
-.score-panel {
-  text-align: center;
-  width: 660px;
-  padding-left: 32px;
-  padding-right: 32px;
-  margin-bottom: 10px;
-}
-
-.score-panel {
-  float: left;
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  margin: 0 5px 0 0;
-}
-
-.score-panel {
-  list-style: none;
-  display: inline-block;
-}
-
-.moves {
-  padding-left: 5px;
-  float: left;
+  margin-right: 8px;
 }
 
 /*
@@ -215,7 +172,7 @@ export default {
 
 .deck {
   align-items: center;
-  width: 670px;
+  width: 100%;
   min-height: 680px;
   padding: 32px;
   border-radius: 8px;
@@ -223,7 +180,7 @@ export default {
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.34);
   margin: 20px auto;
 }
 
@@ -258,8 +215,7 @@ export default {
 }
 
 .matched {
-  opacity: 0.5;
-  border: white solid 3px;
+  display: none;
   cursor: not-allowed;
 }
 </style>

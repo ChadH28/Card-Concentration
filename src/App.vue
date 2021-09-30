@@ -3,17 +3,18 @@
     <header>
       <h1>Card Concentration</h1>
     </header>
-    <Game/>
+    <GameScreen/>
   </div>
 </template>
 
 <script>
-import Game from "./components/Game.vue";
+// import Game from "./components/Game.vue";
+import GameScreen from "./views/GameScreen";
 
 export default {
   name: "App",
   components: {
-    Game,
+    GameScreen
   },
 };
 </script>

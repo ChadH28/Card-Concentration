@@ -20,16 +20,17 @@
     
         <div div class="container">
             <div class="deck row row-cols-6 row-cols-md-6 row-cols-lg-6">
-                <!-- v-if="card.value1 === card.value2 && card.suit('DAIMOND') === card.suit('HEARTS') && card.suit('CLUB') === card.suit('SPADE')" -->
-                <div class="col" v-for="(card,index) in cards" :key="index" :value="card.value" @click="toggleAlert()">
-                    <div class="card-content" @click="toggleFlip()" :class="{ flipped: isActive}">
-                        <div class="card-front">
-    
+                <div class="col" v-for="(card,index) in cards" :key="index" :value="card.value" >
+                    <div class="card-content" @click="toggleCard(card)" :class="{ 'flipped': card.flipped, '': !card.flipped }">
+                        <div class="card-front" v-if="visible">
+                          <!-- background of card image coming soon -->
+                          fr
                         </div>
-                        <div class="card-back">
+                        <div v-else class="card-back">
                             <img class="img-fluid card-image" :src="card.image" />
-                            <p>{{ card.value}}</p>
+                            <!-- <p>{{ card.value}}</p>
                             <p>{{ card.suit }}</p>
+                            <p>{{ card.color }}</p> -->
                         </div>
                     </div>
                 </div>
@@ -39,28 +40,47 @@
 </template>
 
 <script>
+
 export default {
     name: "Concentration",
     data() {
         return {
-            player1: null,
-            player2: null,
+            player1: {
+              moves: null,
+              turn: false,
+              score: 0
+            },
+            player2: {
+              moves: null,
+              turn: false,
+              score: 0
+            },
             card: null,
             moves: null,
+            score: 0,
             cards: [""],
-            isActive: false,
+            visible: false
         };
     },
     created() {
         this.getDeck();
+        // this.getCard();
     },
+    // setup(props, context) {
+    //   const selectCard = () => {
+    //     context.emit('select-card', {
+    //       value: ,
+    //       suit
+    //     })
+    //   }
+    // },
     methods: {
         toggleAlert() {
-            alert("selected", this.cards)
+            console.log("selected", this.cards)
         },
-        toggleFlip() {
-            this.isActive = !this.isActive;
-            console.log(this.cards.value)
+        toggleCard(card) {
+        card.flipped = !card.flipped;
+        console.log(card)
         },
         // getting deck of cards images from the deckofcardsapi
         getDeck() {
@@ -92,12 +112,17 @@ export default {
                         });
                 });
         },
+        // getCard() {
+        // this.cards.forEach((card) => {
+        //     console.log(card.suit)
+        // });
+        // },
     },
 };
 </script>
 
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Added "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .game-section {
     display: flex;
@@ -168,7 +193,7 @@ h1 {
 }
 
 .card-image {
-    margin-bottom: 10px;
+
     background: linear-gradient(160deg, #3c384d 0%, #ffffff 450%);
     border-radius: 6px;
     border: white 3px solid;
@@ -177,6 +202,7 @@ h1 {
 }
 
 .card-content {
+    margin-bottom: 12px;
     cursor: pointer;
     transition: transform 0.6s;
     transform-style: preserve-3d;

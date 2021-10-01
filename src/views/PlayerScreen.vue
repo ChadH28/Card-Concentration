@@ -8,7 +8,7 @@
         <div class="col-sm-6">
           <div class="card mb-3">
             <div class="card-body">
-              <img class="img-fluid" src="../assets/spacer1.png"/>
+              <img class="img-fluid card-image" src="../assets/spacer1.png"/>
             </div>
             <div class="card-footer bg-transparent">
               <input type="text" class="form-control" placeholder="Name of player 1" aria-label="player1">
@@ -17,8 +17,8 @@
         </div>
         <div class="col-sm-6">
           <div class="card mb-3">
-            <div class="card-body">
-              <img class="img-fluid" src="../assets/spacer2.png"/>
+            <div class="card-body image-container">
+              <img class="img-fluid card-image" src="../assets/spacer2.png"/>
             </div>
             <div class="card-footer bg-transparent">
               <input type="text" class="form-control" placeholder="Name of player 2" aria-label="player1">
@@ -41,5 +41,14 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+.image-container{
+  height: 500px;
+  width: 350px;
+}
+
+
+
+
 </style>

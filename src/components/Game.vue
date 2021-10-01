@@ -101,7 +101,7 @@ export default {
           console.log("matched");
           this.flippedCards.forEach(card => (card.matched = true));
           this.flippedCards = [];
-        }, 400);
+        }, 600);
       } else {
         setTimeout(() => {
           this.flippedCards.forEach(card => (card.flipped = false));
@@ -217,6 +217,5 @@ export default {
 
 .matched {
   display: none;
-  cursor: not-allowed;
 }
 </style>

@@ -6,7 +6,7 @@ import winnerScreen from '../views/WinnerScreen.vue'
 const routes = [
   {
     path: '/',
-    name: 'startScreen',
+    name: 'playerScreen',
     component: playerScreen
   },
   {

@@ -35,7 +35,7 @@ h1 {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   background: linear-gradient(160deg, #3de9db 0%, #1330d3d0 100%);
-   height: 100%;
+  height: 100%;
 }
 
 html {

@@ -1,48 +1,49 @@
 <template>
-    <div class="game-section">
-        <div class="float-right">
-            <button
-                @click="reset"
-                type="button"
-                class="btn reset"
-            >
-                <i class="fa fa-repeat"></i>
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-danger"
-                >
-                    <i class="fa fa-sign-out"></i>
-                    </button>
-        </div>
+  <div class="game-section">
+    <div class="float-right">
+      <button
+        @click="reset"
+        type="button"
+        class="btn reset"
+      >
+        <i class="fa fa-repeat"></i>
+        </button>
+        <router-link
+          type="button"
+          class="btn btn-danger"
+          to="/"
+        >
+          <i class="fa fa-sign-out"></i>
+          </router-link>
+    </div>
 
-        <div class="container">
-            <div class="deck row row-cols-sm-6 row-cols-md-6 row-cols-lg-6">
-                <div
-                    class="col"
-                    v-for="(card,index) in cards"
-                    :key="index"
-                    :value="card.value"
-                >
-                    <div
-                        class="card-content"
-                        @click="flipCard(card) && matchCard(card) "
-                        :class="{ 'flipped': card.flipped, 'matched': card.matched}"
-                    >
-                        <div class="card-front">
-                            <!-- background of card image coming soon -->
-                        </div>
-                        <div class="card-back">
-                            <img
-                                class="img-fluid card-image"
-                                :src="card.image"
-                            />
-                        </div>
+    <div class="container">
+      <div class="deck row row-cols-sm-6 row-cols-md-6 row-cols-lg-6">
+        <div
+          class="col"
+          v-for="(card,index) in cards"
+          :key="index"
+          :value="card.value"
+        >
+          <div
+            class="card-content"
+            @click="flipCard(card) && matchCard(card) "
+            :class="{ 'flipped': card.flipped, 'matched': card.matched}"
+          >
+            <div class="card-front">
+              <!-- background of card image coming soon -->
             </div>
-        </div>
+            <div class="card-back">
+              <img
+                class="img-fluid card-image"
+                :src="card.image"
+              />
+            </div>
+      </div>
     </div>
-    </div>
-    </div>
+  </div>
+  </div>
+  </div>
 </template>
 
 <script>

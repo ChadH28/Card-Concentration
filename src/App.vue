@@ -3,18 +3,19 @@
     <header>
       <h1>Card Concentration</h1>
     </header>
-    <GameScreen/>
+    <router-view/>
+    <!-- <GameScreen/> -->
   </div>
 </template>
 
 <script>
 // import Game from "./components/Game.vue";
-import GameScreen from "./views/GameScreen";
+// import GameScreen from "./views/GameScreen";
 
 export default {
   name: "App",
   components: {
-    GameScreen
+    // GameScreen
   },
 };
 </script>
@@ -34,6 +35,7 @@ h1 {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   background: linear-gradient(160deg, #3de9db 0%, #1330d3d0 100%);
+   height: 100%;
 }
 
 html {
@@ -50,6 +52,7 @@ html,
 body {
   width: 100%;
   height: 100%;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
 }

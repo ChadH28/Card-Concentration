@@ -208,6 +208,7 @@ export default {
     border-radius: 8px;
     color: white;
     background-color: rgba(255, 255, 255, 0.35);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .card-title {
@@ -288,6 +289,8 @@ export default {
     border-radius: 8px;
     margin-top: 15px;
     font-weight: bolder;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 

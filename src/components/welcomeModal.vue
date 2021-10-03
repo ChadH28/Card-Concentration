@@ -62,7 +62,6 @@ export default {
     overflow: hidden;
     outline: 0;
     /* backdrop -- generated from glassmorphism*/
-    backdrop-filter: blur(22px) saturate(180%);
     -webkit-backdrop-filter: blur(22px) saturate(180%);
     background-color: rgba(74, 144, 226, 0.72);
 }
@@ -77,7 +76,6 @@ export default {
 }
 
 .modal-content {
-    backdrop-filter: blur(22px) saturate(180%);
     -webkit-backdrop-filter: blur(22px) saturate(180%);
     background-color: rgba(255, 255, 255, 0.72);
     border-radius: 12px;

@@ -5,7 +5,6 @@
                 <h2>Are you ready to play?</h2>
             </header>
             <div class="row ">
-              <!-- {{player1.name}} {{player2.name}} -->
                 <div class="col-sm-6 ">
                     <div class="player-container">
                         <div class="card-body image-container">

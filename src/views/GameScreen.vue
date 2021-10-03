@@ -10,8 +10,8 @@
                             <h5 class="card-title">Score: {{player1.score}}</h5>
                         </div>
                     </div>
-                    <div>
-                        {{player1.turns}}
+                    <div class="turn-bar" v-if="(turns % 2)">
+                        <h4>it's Your Turn</h4>
                     </div>
                 </div>
                 <div class="col-sm-8 col-md-8 col-lg-8">
@@ -47,8 +47,8 @@
                             <h5 class="card-title">Score: {{player2.score}}</h5>
                         </div>
                     </div>
-                    <div>
-                        {{player2.turns}}
+                    <div class="turn-bar" v-if="!(turns % 2)" >
+                        <h4>it's Your Turn</h4>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@ export default {
             // const player1 = this.turns++;
             // console.log(this.player1.turns++)
             // console.log(this.player2.turns+2)
-            if((turns % 2) != 1) {
+            if((turns % 2) ) {
               console.log('player 2s turn')
             }
             else {
@@ -124,7 +124,7 @@ export default {
             }
             // Currently only matching on values not color
             if (this.flippedCards[0].value === this.flippedCards[1].value) {
-              if((turns % 2) != 1) {
+              if((turns % 2) ) {
                 setTimeout(() => {
                     console.log("matched for player 2");
                     this.player2.score++
@@ -199,6 +199,7 @@ export default {
 
 .player-img {
     height: 300px;
+    width: 250px;
 }
 
 .player-card {
@@ -277,4 +278,17 @@ export default {
 .matched {
     display: none;
 }
+
+.turn-bar{
+    width: 100%;
+    height: 64px;
+    padding: 20px;
+    color: #489DDA;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-weight: bolder;
+}
+
+
 </style>

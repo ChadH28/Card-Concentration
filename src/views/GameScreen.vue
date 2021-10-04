@@ -4,7 +4,7 @@
             <Buttons/>
             <div class="row">
                 <div class="col-sm-2 col-md-2 col-lg-2">
-                    <leftCard :player1_score='player1.score'/>
+                    <leftCard :player1_score='player1.score' />
                     <div class="turn-bar" v-if="(turns % 2)">
                         <h4>it's Your Turn</h4>
                     </div>
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="col-sm-2 col-md-2 col-lg-2">
-                    <rightCard :player2_score='player2.score'/>
+                    <rightCard :player2_score='player2.score' />
                     <div class="turn-bar" v-if="!(turns % 2)">
                         <h4>it's Your Turn</h4>
                     </div>
@@ -47,7 +47,7 @@ export default {
     components: {
         Buttons,
         leftCard,
-        rightCard
+        rightCard,
     },
     data() {
         return {
@@ -207,7 +207,6 @@ export default {
 
 
 <style scoped>
-
 .turn-bar {
     width: 100%;
     height: 64px;
@@ -220,7 +219,6 @@ export default {
     border: none;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
-
 
 /*
  * Styles for the deck of cards

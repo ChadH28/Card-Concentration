@@ -24,6 +24,24 @@ Track the score with a state management system (Akita, NGRX, NGXS, Redux)
 Click [Here ](https://chadh28.github.io/Card-Concentration/#/).
 
 ## Project setup
+Ensure you have node and npm
+```
+node -v
+```
+```
+npm -v
+```
+
+Ensure you have vue installed globally
+```
+npm install -g @vue/cli
+```
+or admin (for linux)
+```
+sudo npm install -g @vue/cli
+```
+
+
 ```
 npm install
 ```

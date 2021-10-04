@@ -1,6 +1,14 @@
 <template>
     <div class="gameScreen-section">
         <div class="container-fluid">
+            <section class="button-container">
+                <button @click="reset" type="button" class="btn reset">
+                                <i class="fa fa-repeat"></i>
+                                </button>
+                <router-link type="button" class="btn btn-danger" to="/">
+                    <i class="fa fa-sign-out"></i>
+                </router-link>
+            </section>
             <div class="row">
                 <div class="col-sm-2 col-md-2 col-lg-2">
                     <div class="card player-card">
@@ -16,16 +24,9 @@
                 </div>
                 <div class="col-sm-8 col-md-8 col-lg-8">
                     <div class="game-section">
-                        <button @click="reset" type="button" class="btn reset">
-                    <i class="fa fa-repeat"></i>
-                    </button>
-                        <router-link type="button" class="btn btn-danger" to="/">
-                            <i class="fa fa-sign-out"></i>
-                        </router-link>
-    
                         <div class="container">
-                            <div class="deck row row-cols-sm-6 row-cols-md-6 row-cols-lg-6">
-                                <div class="col" v-for="(card,index) in cards" :key="index" :value="card.value">
+                            <div class="deck">
+                                <div class="suit" v-for="(card,index) in cards" :key="index" :value="card.value">
                                     <div class="card-content" @click="flipCard(card) && matchCard(card) " :class="{ 'flipped': card.flipped, 'matched': card.matched}">
                                         <div class="card-front">
                                             <!-- background of card image coming soon -->
@@ -47,7 +48,7 @@
                             <h5 class="card-title">Score: {{player2.score}}</h5>
                         </div>
                     </div>
-                    <div class="turn-bar" v-if="!(turns % 2)" >
+                    <div class="turn-bar" v-if="!(turns % 2)">
                         <h4>it's Your Turn</h4>
                     </div>
                 </div>
@@ -83,7 +84,7 @@ export default {
         this.redCards()
     },
     methods: {
-        flipCard(card) {   
+        flipCard(card) {
             card.flipped = true;
             // console.log(card.value, ' OF ', card.suit)
             if (this.flippedCards.length < 2) {
@@ -102,46 +103,44 @@ export default {
             }
         },
         redCards() {
-          for (let i = 0; i < this.cards.length; i++) {
-            console.log(this.cards[i])
-            // cards['color'] = 'RED';
-            // if(this.cards[i].suit === 'HEARTS') {
-            //   // this.cards[i].append({color: 'red'});
-            //   console.log(this.cards[i])
-            // }
-          }
+            for (let i = 0; i < this.cards.length; i++) {
+                console.log(this.cards[i])
+                // cards['color'] = 'RED';
+                // if(this.cards[i].suit === 'HEARTS') {
+                //   // this.cards[i].append({color: 'red'});
+                //   console.log(this.cards[i])
+                // }
+            }
         },
-        matchCard() {     
+        matchCard() {
             const turns = this.turns++;
             // const player1 = this.turns++;
             // console.log(this.player1.turns++)
             // console.log(this.player2.turns+2)
-            if((turns % 2) ) {
-              console.log('player 2s turn')
-            }
-            else {
-              console.log('player 1s turn')
+            if ((turns % 2)) {
+                console.log('player 2s turn')
+            } else {
+                console.log('player 1s turn')
             }
             // Currently only matching on values not color
             if (this.flippedCards[0].value === this.flippedCards[1].value) {
-              if((turns % 2) ) {
-                setTimeout(() => {
-                    console.log("matched for player 2");
-                    this.player2.score++
-                    // console.log(this.player2.score++);
-                    this.flippedCards.forEach(card => (card.matched = true));
-                    this.flippedCards = [];
-                }, 600);
-              }
-              else {
-                setTimeout(() => {
-                    console.log("matched for player 1");
-                    this.player1.score++
-                    // console.log(this.player1.score++);
-                    this.flippedCards.forEach(card => (card.matched = true));
-                    this.flippedCards = [];
-                }, 600);
-              }
+                if ((turns % 2)) {
+                    setTimeout(() => {
+                        console.log("matched for player 2");
+                        this.player2.score++
+                            // console.log(this.player2.score++);
+                            this.flippedCards.forEach(card => (card.matched = true));
+                        this.flippedCards = [];
+                    }, 600);
+                } else {
+                    setTimeout(() => {
+                        console.log("matched for player 1");
+                        this.player1.score++
+                            // console.log(this.player1.score++);
+                            this.flippedCards.forEach(card => (card.matched = true));
+                        this.flippedCards = [];
+                    }, 600);
+                }
             } else {
                 setTimeout(() => {
                     this.flippedCards.forEach(card => (card.flipped = false));
@@ -193,21 +192,23 @@ export default {
 
 
 <style scoped>
-/* .gameScreen-section{
-  padding: 10px;
-} */
+/*
+ player cards
+  */
 
 .player-img {
     height: 300px;
     width: 250px;
+    margin:auto;
 }
 
 .player-card {
-    margin-top: 200px;
-    padding: 15px;
+    margin: 100px 10px 15px ;
+    padding: 10px;
     border-radius: 8px;
     color: white;
     background-color: rgba(255, 255, 255, 0.35);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .card-title {
@@ -215,10 +216,25 @@ export default {
     font-weight: bold;
 }
 
-.game-section {
-    justify-content: center;
-    align-items: center;
-    padding-top: 10px;
+.turn-bar {
+    width: 100%;
+    height: 64px;
+    padding: 20px;
+    color: #489DDA;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-weight: bolder;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+/*
+ player cards end
+  */
+
+.button-container {
+    margin-top: 10px;
 }
 
 .reset {
@@ -237,12 +253,18 @@ export default {
     height: auto;
     padding: 20px;
     border-radius: 8px;
-    backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     background-color: rgba(255, 255, 255, 0.34);
-    margin-top: 20px;
-    margin-bottom: 20px;
+    /* deck grid */
+    display: grid;
+    grid-auto-columns: max-content;
+    grid-auto-flow: dense;
+    grid-auto-rows: minmax(100px, auto);
+    grid-gap: 25px;
+    grid-template-columns: repeat(12, 1fr);
+    margin: 20px auto;
+    /* deck grid end */
 }
 
 .card-image {
@@ -278,17 +300,4 @@ export default {
 .matched {
     display: none;
 }
-
-.turn-bar{
-    width: 100%;
-    height: 64px;
-    padding: 20px;
-    color: #489DDA;
-    background-color: #FFFFFF;
-    border-radius: 8px;
-    margin-top: 15px;
-    font-weight: bolder;
-}
-
-
 </style>

@@ -10,8 +10,8 @@
                         <div class="card-body image-container">
                             <img class="card-img-top img-fluid player-img" src="../assets/spacer1.png" />
                         </div>
-                        <div class="footer">
-                            <input type="text" v-model="player1.name" class="form-control" placeholder="Name of player 1" aria-label="player1">
+                        <div class="card-footer bg-transparent">
+                            <input type="text" v-model="player1.name" class="form-control player-input" placeholder="Name of player 1" aria-label="player1">
                         </div>
                     </div>
                 </div>
@@ -20,9 +20,8 @@
                         <div class="card-body image-container">
                             <img class="card-img-top img-fluid player-img" src="../assets/spacer2.png" />
                         </div>
-                        <div class="footer">
-                          
-                            <input v-model="player2.name" type="text" class="form-control" placeholder="Name of player 2" aria-label="player2">
+                        <div class="card-footer bg-transparent">       
+                            <input v-model="player2.name" type="text" class="form-control player-input" placeholder="Name of player 2" aria-label="player2">
                         </div>
                     </div>
                 </div>
@@ -69,11 +68,12 @@ export default {
 
 <style scoped>
 .player-container {
-    width: 450px;
+    width: 400px;
 }
 
-.footer {
-    margin-bottom: 25px;
+.card-footer {
+    margin-bottom: 30px;
+    border: none;
 }
 
 .player-img {

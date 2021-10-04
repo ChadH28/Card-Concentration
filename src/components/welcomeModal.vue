@@ -30,16 +30,6 @@
 export default {
     name: "modal",
     props: ['player1', 'player2'],
-    // data() {
-    //     return {
-    //         player1: {
-    //             name: "Ronal"
-    //         },
-    //         player2: {
-    //             name: "gillian"
-    //         },
-    //     }
-    // },
     methods: {
         toggleClose() {
             this.$emit('close')

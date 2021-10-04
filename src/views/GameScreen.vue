@@ -3,8 +3,8 @@
         <div class="container-fluid">
             <section class="button-container">
                 <button @click="reset" type="button" class="btn reset">
-                                <i class="fa fa-repeat"></i>
-                                </button>
+                                                    <i class="fa fa-repeat"></i>
+                                                    </button>
                 <router-link type="button" class="btn btn-danger" to="/">
                     <i class="fa fa-sign-out"></i>
                 </router-link>
@@ -71,7 +71,7 @@ export default {
             // Array of stored flipped cards the user selects / later will be used to store the flips player 1 and player 2 chooses
             flippedCards: [],
             // Array of a deck of cards
-            cards: [""],
+            cards: [],
             flipped: false,
             matched: false,
             // turn started at 1 for player1 (so the plan is to increment the turns on each 2nd flip) and then to make player 1 increments odd numbers and player 2 increments even 
@@ -81,7 +81,6 @@ export default {
     created() {
         this.getDeck();
         this.reset();
-        this.redCards()
     },
     methods: {
         flipCard(card) {
@@ -95,48 +94,35 @@ export default {
                 // console.log(
                 //     "youve selected 2 cards:",
                 //     this.flippedCards[0].value,
-                //     this.flippedCards[0].suit,
+                //     this.flippedCards[0].color,
                 //     this.flippedCards[1].value,
-                //     this.flippedCards[1].suit
+                //     this.flippedCards[1].color
                 // );
                 this.matchCard();
             }
         },
-        redCards() {
-            for (let i = 0; i < this.cards.length; i++) {
-                console.log(this.cards[i])
-                // cards['color'] = 'RED';
-                // if(this.cards[i].suit === 'HEARTS') {
-                //   // this.cards[i].append({color: 'red'});
-                //   console.log(this.cards[i])
-                // }
-            }
-        },
         matchCard() {
             const turns = this.turns++;
-            // const player1 = this.turns++;
-            // console.log(this.player1.turns++)
-            // console.log(this.player2.turns+2)
-            if ((turns % 2)) {
-                console.log('player 2s turn')
-            } else {
-                console.log('player 1s turn')
-            }
-            // Currently only matching on values not color
-            if (this.flippedCards[0].value === this.flippedCards[1].value) {
+            // if ((turns % 2)) {
+            //     console.log('player 2s turn')
+            // } else {
+            //     console.log('player 1s turn')
+            // }
+            // Matching on value and color
+            if (this.flippedCards[0].value === this.flippedCards[1].value && this.flippedCards[0].color == this.flippedCards[1].color) {
                 if ((turns % 2)) {
                     setTimeout(() => {
-                        console.log("matched for player 2");
-                        this.player2.score++
-                            // console.log(this.player2.score++);
+                        // console.log("matched for player 1");
+                        this.player1.score++
+                            // console.log(this.player1.score++);
                             this.flippedCards.forEach(card => (card.matched = true));
                         this.flippedCards = [];
                     }, 600);
                 } else {
                     setTimeout(() => {
-                        console.log("matched for player 1");
-                        this.player1.score++
-                            // console.log(this.player1.score++);
+                        // console.log("matched for player 2");
+                        this.player2.score++
+                            // console.log(this.player2.score++);
                             this.flippedCards.forEach(card => (card.matched = true));
                         this.flippedCards = [];
                     }, 600);
@@ -155,6 +141,8 @@ export default {
                 this.flippedCards = [];
             }, 600);
             // alert("Game reseted");
+            this.player1.score = 0;
+            this.player2.score = 0;
         },
         // getting deck of cards images from the deckofcardsapi
         getDeck() {
@@ -183,6 +171,30 @@ export default {
                         .then(json => {
                             // console.log(json.cards)
                             this.cards = json.cards;
+                            for (let i = 0; i < this.cards.length; i++) {
+                                // const card = this.cards[i];
+                                // console.log(card)
+                                if (this.cards[i].suit == 'HEARTS') {
+                                    const Red1 = this.cards[i];
+                                    Red1['color'] = 'RED';
+                                    // console.log(Red1)
+                                }
+                                if (this.cards[i].suit == 'DIAMONDS') {
+                                    const Red2 = this.cards[i];
+                                    Red2['color'] = 'RED';
+                                    // console.log(Red2)
+                                }
+                                if (this.cards[i].suit === 'SPADES') {
+                                    const Black1 = this.cards[i];
+                                    Black1['color'] = 'BLACK';
+                                    // console.log(Black1)
+                                }
+                                if (this.cards[i].suit === 'CLUBS') {
+                                    const Black2 = this.cards[i];
+                                    Black2['color'] = 'BLACK';
+                                    // console.log(Black2)
+                                }
+                            }
                         });
                 });
         },
@@ -199,11 +211,11 @@ export default {
 .player-img {
     height: 300px;
     width: 250px;
-    margin:auto;
+    margin: auto;
 }
 
 .player-card {
-    margin: 100px 10px 15px ;
+    margin: 100px 5px 15px;
     padding: 10px;
     border-radius: 8px;
     color: white;

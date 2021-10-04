@@ -1,23 +1,10 @@
 <template>
     <div class="gameScreen-section">
         <div class="container-fluid">
-            <section class="button-container">
-                <button @click="reset" type="button" class="btn reset">
-                                                    <i class="fa fa-repeat"></i>
-                                                    </button>
-                <router-link type="button" class="btn btn-danger" to="/">
-                    <i class="fa fa-sign-out"></i>
-                </router-link>
-            </section>
+            <Buttons/>
             <div class="row">
                 <div class="col-sm-2 col-md-2 col-lg-2">
-                    <div class="card player-card">
-                        <img class="card-img-top img-fluid player-img" src="../assets/spacer1.png" alt="player1">
-                        <div class="card-body">
-                            <h5 class="card-title">Player 1</h5>
-                            <h5 class="card-title">Score: {{player1.score}}</h5>
-                        </div>
-                    </div>
+                    <leftCard :player1_score='player1.score'/>
                     <div class="turn-bar" v-if="(turns % 2)">
                         <h4>it's Your Turn</h4>
                     </div>
@@ -41,13 +28,7 @@
                     </div>
                 </div>
                 <div class="col-sm-2 col-md-2 col-lg-2">
-                    <div class="card player-card">
-                        <img class="card-img-top img-fluid player-img" src="../assets/spacer2.png" alt="player1">
-                        <div class="card-body">
-                            <h5 class="card-title">Player 2</h5>
-                            <h5 class="card-title">Score: {{player2.score}}</h5>
-                        </div>
-                    </div>
+                    <rightCard :player2_score='player2.score'/>
                     <div class="turn-bar" v-if="!(turns % 2)">
                         <h4>it's Your Turn</h4>
                     </div>
@@ -58,11 +39,20 @@
 </template>
 
 <script>
+import Buttons from '../components/Buttons';
+import leftCard from '../components/leftCard';
+import rightCard from '../components/rightCard';
 export default {
     name: "gameScreen",
+    components: {
+        Buttons,
+        leftCard,
+        rightCard
+    },
     data() {
         return {
             player1: {
+                // score goes up by 2 each time for the sake of 2cards being scored
                 score: 0,
             },
             player2: {
@@ -74,13 +64,14 @@ export default {
             cards: [],
             flipped: false,
             matched: false,
-            // turn started at 1 for player1 (so the plan is to increment the turns on each 2nd flip) and then to make player 1 increments odd numbers and player 2 increments even 
-            turns: 1
+            // turn started at 1 for player1 (so the plan is to increment the turns on each 2nd flip) and then to make player 1 increments odd numbers and player 2 increments even
+            turns: 1,
         };
     },
     created() {
         this.getDeck();
         this.reset();
+
     },
     methods: {
         flipCard(card) {
@@ -109,24 +100,29 @@ export default {
             //     console.log('player 1s turn')
             // }
             // Matching on value and color
-            if (this.flippedCards[0].value === this.flippedCards[1].value && this.flippedCards[0].color == this.flippedCards[1].color) {
-                if ((turns % 2)) {
+            if (
+                this.flippedCards[0].value === this.flippedCards[1].value &&
+                this.flippedCards[0].color == this.flippedCards[1].color
+            ) {
+                if (turns % 2) {
                     setTimeout(() => {
                         // console.log("matched for player 1");
-                        this.player1.score++
-                            // console.log(this.player1.score++);
-                            this.flippedCards.forEach(card => (card.matched = true));
+                        // incrementing by 2 to score the value of 2 cards
+                        this.player1.score += 2;
+                        // console.log(this.player1.score++);
+                        this.flippedCards.forEach(card => (card.matched = true));
                         this.flippedCards = [];
                     }, 600);
                 } else {
                     setTimeout(() => {
                         // console.log("matched for player 2");
-                        this.player2.score++
-                            // console.log(this.player2.score++);
-                            this.flippedCards.forEach(card => (card.matched = true));
+                        this.player2.score += 2;
+                        // console.log(this.player2.score++);
+                        this.flippedCards.forEach(card => (card.matched = true));
                         this.flippedCards = [];
                     }, 600);
                 }
+
             } else {
                 setTimeout(() => {
                     this.flippedCards.forEach(card => (card.flipped = false));
@@ -135,12 +131,19 @@ export default {
                 }, 600);
             }
         },
+        completed(card) {
+            if (
+                this.cards.forEach(card => (card.matched = true))
+            ) {
+                console.log(card, 'eish')
+            }
+
+        },
         reset() {
             this.getDeck();
             setTimeout(() => {
                 this.flippedCards = [];
             }, 600);
-            // alert("Game reseted");
             this.player1.score = 0;
             this.player2.score = 0;
         },
@@ -174,24 +177,24 @@ export default {
                             for (let i = 0; i < this.cards.length; i++) {
                                 // const card = this.cards[i];
                                 // console.log(card)
-                                if (this.cards[i].suit == 'HEARTS') {
+                                if (this.cards[i].suit === "HEARTS") {
                                     const Red1 = this.cards[i];
-                                    Red1['color'] = 'RED';
+                                    Red1["color"] = "RED";
                                     // console.log(Red1)
                                 }
-                                if (this.cards[i].suit == 'DIAMONDS') {
+                                if (this.cards[i].suit === "DIAMONDS") {
                                     const Red2 = this.cards[i];
-                                    Red2['color'] = 'RED';
+                                    Red2["color"] = "RED";
                                     // console.log(Red2)
                                 }
-                                if (this.cards[i].suit === 'SPADES') {
+                                if (this.cards[i].suit === "SPADES") {
                                     const Black1 = this.cards[i];
-                                    Black1['color'] = 'BLACK';
+                                    Black1["color"] = "BLACK";
                                     // console.log(Black1)
                                 }
-                                if (this.cards[i].suit === 'CLUBS') {
+                                if (this.cards[i].suit === "CLUBS") {
                                     const Black2 = this.cards[i];
-                                    Black2['color'] = 'BLACK';
+                                    Black2["color"] = "BLACK";
                                     // console.log(Black2)
                                 }
                             }
@@ -204,36 +207,13 @@ export default {
 
 
 <style scoped>
-/*
- player cards
-  */
-
-.player-img {
-    height: 300px;
-    width: 250px;
-    margin: auto;
-}
-
-.player-card {
-    margin: 100px 5px 15px;
-    padding: 10px;
-    border-radius: 8px;
-    color: white;
-    background-color: rgba(255, 255, 255, 0.35);
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-}
-
-.card-title {
-    font-size: 30px;
-    font-weight: bold;
-}
 
 .turn-bar {
     width: 100%;
     height: 64px;
     padding: 20px;
-    color: #489DDA;
-    background-color: #FFFFFF;
+    color: #489dda;
+    background-color: #ffffff;
     border-radius: 8px;
     margin-top: 15px;
     font-weight: bolder;
@@ -241,19 +221,6 @@ export default {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
-/*
- player cards end
-  */
-
-.button-container {
-    margin-top: 10px;
-}
-
-.reset {
-    background-color: orange;
-    color: white;
-    margin-right: 8px;
-}
 
 /*
  * Styles for the deck of cards

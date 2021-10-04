@@ -10,12 +10,12 @@ clicking card should flip [Complete]
 flip 2 cards at a time [Complete]
 animation on card flip [Complete]
 Deployed on github [Complete]
+number and color must match -- example(4hearts and 4 diamonds) [Complete]
+make card grid smaller [Complete]
 Display 54 cards - 52 unique cards plus jokers facedown [Complete] Still need to make jokers
-number and color must match -- example(4hearts and 4 diamonds) [Complete] Numbers match colors dont
 if user mistakenly clicks on the card twice it counts as a match
 winning screen
 if matched show confete and display matched message
-make card grid smaller
 making it responsive on mobile and tablet (the card grid specifically)
 A reset button which goes back to start screen
 Track the score with a state management system (Akita, NGRX, NGXS, Redux)

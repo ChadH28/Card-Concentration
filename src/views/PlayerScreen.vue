@@ -110,5 +110,6 @@ export default {
 .btn {
     width: 150px;
     padding: 10px;
+    margin-bottom: 15px;
 }
 </style>

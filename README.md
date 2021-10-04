@@ -41,7 +41,7 @@ or admin (for linux)
 sudo npm install -g @vue/cli
 ```
 
-
+Run npm i to install all required node modules
 ```
 npm install
 ```
